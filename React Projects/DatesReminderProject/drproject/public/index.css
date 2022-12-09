@@ -1,0 +1,27 @@
+.color-body{
+    background-color: #f8f8f8;
+}
+.font{
+    font-family: 'Almarai', sans-serif;
+}
+.rectangle{
+    min-height: 400px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 1px 4px 4px 1px rgba(85,85,85,0.25);
+}
+.dates-count{
+    color:#555555;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.btn-style{
+    width: 200px;
+    border-radius:8px;
+    background-color: #224f61;
+}
+.img-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

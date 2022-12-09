@@ -1,0 +1,7 @@
+.card {
+    height: 650px;
+}
+.card-text{
+    overflow: hidden;
+    max-height: 100px;
+}
