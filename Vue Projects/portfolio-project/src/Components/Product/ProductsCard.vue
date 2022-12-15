@@ -2,7 +2,7 @@
     <div class="products text-center">
         <div class="container">
             <h1>Projects Portfolio</h1>
-            <p>Search projects by title or filter by category</p>
+            <p class="p-search">Search projects by title or filter by category</p>
             <div class="d-flex justify-content-between my-4 search">
                 <div class="d-flex">
                     <span class="shadow">
@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 </div>
+                <button class="btn">More Projects</button>
             </div>
         </div>
     </div>
@@ -86,20 +87,63 @@ input , select{
 .card-text{
     color:#1E3851;
 }
-@media screen and (min-width: 768px) {
-    .card{
-        width: 45%;
+.btn{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #4F46E5;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    opacity: 0.8;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.btn:hover{
+    opacity: 1;
+}
+@media screen and (max-width:767px){
+    h1{
+        font-size: 24px;
     }
-    .row{
-        gap: 72px;
+    .p-search{
+        font-size: 16px;
+    }
+    span{
+        display: none;
+    }
+    input{
+        margin: 0;
+        padding: 10px;
+        width: 185px;
+    }
+    select{
+        width: 150px;
+        padding: 10px;
+        margin-left: 10px;
+    }
+    .card{
+        margin-bottom: 25px;
     }
 }
-@media screen and (min-width: 991px){
+@media screen and (min-width: 768px) and (max-width:991px){
     .card{
-        width: 30%;
+        width: 45%;
+        margin: auto;
     }
     .row{
-        gap: 48px;
+        gap: 20px;
+    }
+}
+@media screen and (min-width:992px){
+    .card{
+        width: 30%;
+        margin: 0 8px;
+    }
+    .row{
+        gap: 20px;
     }
 }
 </style>

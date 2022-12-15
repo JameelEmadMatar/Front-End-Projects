@@ -1,9 +1,9 @@
 <template>
       <nav class="navbar navbar-expand-lg py-3">
       <div class="container">
-        <a href="#" class="navbar-brand">
+        <router-link :to="{name:'home'}" class="navbar-brand" @click="active = null">
           <img src="../photos/brandimg.png">
-        </a>
+        </router-link>
 
         <button
           class="navbar-toggler"
@@ -16,14 +16,14 @@
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" @click="active = 'Projects'" :class="{active:active === 'Projects'}">
-              <a class="nav-link" aria-current="page" href="#">Projects</a>
+            <li class="nav-item" @click="active = 'Projects'">
+              <router-link class="nav-link" :class="{active:active === 'Projects'}" aria-current="page" :to="{name:'Projects'}">Projects</router-link>
             </li>
-            <li class="nav-item" @click="active = 'About'" :class="{active:active === 'About'}">
-              <a class="nav-link" href="#">About Me</a>
+            <li class="nav-item" @click="active = 'About'">
+              <router-link class="nav-link" :class="{active:active === 'About'}" :to="{name:'About'}">About Me</router-link>
             </li>
-            <li class="nav-item" @click="active = 'Contact'" :class="{active:active === 'Contact'}">
-              <a class="nav-link" href="#">Contact</a>
+            <li class="nav-item" @click="active = 'Contact'">
+              <router-link class="nav-link" :class="{active:active === 'Contact'}" :to="{name:'Contact'}">Contact</router-link>
             </li>
           </ul>
         </div>
@@ -38,7 +38,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-const active = ref("Projects")
+const active = ref(null)
 </script>
 <style scoped>
 img{
@@ -52,12 +52,16 @@ ul li{
     padding-top:10px;
     margin: 10px;
 }
+ul li:hover a{
+  color: #4F46E5;
+}
 .main{
     display: flex;
 }
 .btn{
     border: none;
-    padding: 10px 25px;
+    padding: 10px 20px;
+    opacity: 0.8;
     border-radius: 6px;
     background-color: #4F46E5;
     font-weight: bold;
@@ -67,8 +71,14 @@ ul li{
     font-size: 16px;
     outline: none;
 }
+.btn:hover{
+  opacity: 1;
+}
 .nav-link{
   color: black;
+}
+.nav-link.active{
+  color: #4F46E5;
 }
 svg{
     width: 50px;
