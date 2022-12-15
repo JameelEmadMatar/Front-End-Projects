@@ -16,13 +16,13 @@
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
+            <li class="nav-item" @click="active = 'Projects'" :class="{active:active === 'Projects'}">
               <a class="nav-link" aria-current="page" href="#">Projects</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click="active = 'About'" :class="{active:active === 'About'}">
               <a class="nav-link" href="#">About Me</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click="active = 'Contact'" :class="{active:active === 'Contact'}">
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
@@ -36,6 +36,10 @@
       </div>
     </nav>
 </template>
+<script setup>
+import { ref } from 'vue'
+const active = ref("Projects")
+</script>
 <style scoped>
 img{
     width: 130px;

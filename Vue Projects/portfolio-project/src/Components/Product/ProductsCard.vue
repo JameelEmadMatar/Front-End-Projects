@@ -20,12 +20,14 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="card shadow rounded mt-2 border-0 p-0">
-                    <img src="../../photos/Products/1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Google Health Platform</h5>
-                        <p class="card-text">Web Application</p>
+            <div class="container">
+                <div class="row">
+                    <div class="card shadow rounded mt-2 border-0 p-0">
+                        <img src="../../photos/Products/1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Google Health Platform</h5>
+                            <p class="card-text">Web Application</p>
+                        </div>
                     </div>
                 </div>
             </div>
