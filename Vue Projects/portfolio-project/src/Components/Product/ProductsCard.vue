@@ -8,33 +8,48 @@
                     <span class="shadow">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-ternary-dark dark:text-ternary-light"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </span>
-                    <input class="border" type="text" placeholder="Search Projects">
+                    <input v-model="searchWord" @input="searchDis" @blur="defaultSearch" class="border" type="text" placeholder="Search Projects">
                 </div>
                 <div>
-                    <select class="border">
+                    <select class="border" v-model="optionsellect" @change="options">
                         <option>All Projects</option>
-                        <option>Web Development</option>
-                        <option>Mobile App</option>
-                        <option>All Projects</option>
-                        <option>All Projects</option>
+                        <option>Web Application</option>
+                        <option>Mobile Application</option>
+                        <option>UI/UX Design</option>
+                        <option>Branding</option>
                     </select>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="card shadow rounded mt-2 border-0 p-0">
-                        <img src="../../photos/Products/1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Google Health Platform</h5>
-                            <p class="card-text">Web Application</p>
-                        </div>
-                    </div>
+                    <ProductItem :Products="Products"/>
                 </div>
-                <button class="btn">More Projects</button>
+                <router-link :to="{name:'Projects'}">
+                    <button class="btn">More Projects</button>
+                </router-link>
             </div>
         </div>
     </div>
 </template>
+<script setup>
+import ProductItem from './ProductItem.vue'
+import store from '../../Store'
+import { computed, onMounted, ref } from 'vue'
+const optionsellect = ref("All Projects");
+const searchWord = ref('');
+const Products = computed(()=>store.state.ProductSellected)
+function defaultSearch(){
+    searchWord.value = ''
+    store.dispatch('showSearchProducts',searchWord.value);   
+}
+function options(){
+    store.dispatch('showSellectedProducts',optionsellect.value);
+}
+function searchDis(){
+    store.dispatch('showSearchProducts',searchWord.value);
+}
+onMounted(() => store.dispatch('showSellectedProducts',optionsellect.value))
+</script>
 <style scoped>
 .products{
     margin-top: 50px;
@@ -76,17 +91,6 @@ input , select{
     border-radius: 10px;
     padding: 10px 20px;
 }
-.card{
-    border-radius: 10px;
-    overflow: hidden;
-}
-.card-title{
-    color:#1E3851;
-    font-weight: bold;
-}
-.card-text{
-    color:#1E3851;
-}
 .btn{
     padding: 10px 20px;
     outline: none;
@@ -124,24 +128,13 @@ input , select{
         padding: 10px;
         margin-left: 10px;
     }
-    .card{
-        margin-bottom: 25px;
-    }
 }
 @media screen and (min-width: 768px) and (max-width:991px){
-    .card{
-        width: 45%;
-        margin: auto;
-    }
     .row{
         gap: 20px;
     }
 }
 @media screen and (min-width:992px){
-    .card{
-        width: 30%;
-        margin: 0 8px;
-    }
     .row{
         gap: 20px;
     }
