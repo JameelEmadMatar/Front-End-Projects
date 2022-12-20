@@ -58,6 +58,9 @@ input , textarea{
 textarea{
     min-height: 200px;
 }
+.contact-form{
+    border-radius: 10px;
+}
 .btn{
     background-color: #4F46E5;
     color: #fff;

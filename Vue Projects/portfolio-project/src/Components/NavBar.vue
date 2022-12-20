@@ -16,14 +16,14 @@
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" @click="active = 'Projects'">
-              <router-link class="nav-link" :class="{active:active === 'Projects'}" aria-current="page" :to="{name:'Projects'}">Projects</router-link>
+            <li class="nav-item">
+              <router-link class="nav-link" aria-current="page" :to="{name:'Projects'}">Projects</router-link>
             </li>
-            <li class="nav-item" @click="active = 'About'">
-              <router-link class="nav-link" :class="{active:active === 'About'}" :to="{name:'About'}">About Me</router-link>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{name:'About'}">About Me</router-link>
             </li>
-            <li class="nav-item" @click="active = 'Contact'">
-              <router-link class="nav-link" :class="{active:active === 'Contact'}" :to="{name:'Contact'}">Contact</router-link>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{name:'Contact'}">Contact</router-link>
             </li>
           </ul>
         </div>
@@ -77,7 +77,7 @@ ul li:hover a{
 .nav-link{
   color: black;
 }
-.nav-link.active{
+.nav-link.active {
   color: #4F46E5;
 }
 svg{
@@ -91,5 +91,19 @@ svg{
 }
 .navbar-collapse {
   flex-grow: 0 !important;
+}
+.navbar-toggler[aria-expanded="true"]{
+  order: 0;
+}
+.navbar-toggler , .navbar-toggler[aria-expanded="false"]{
+  order: 2;
+}
+@media screen and (max-width:991px) {
+  .nav-link{
+    border-bottom: 2px solid #eee;
+  }
+  .main .btn{
+    margin-left: 8px;
+  }
 }
 </style>

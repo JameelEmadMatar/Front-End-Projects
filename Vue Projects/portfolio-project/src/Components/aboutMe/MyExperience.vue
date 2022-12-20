@@ -31,4 +31,9 @@ h2{
     font-weight: bold;
     margin: 0;
 }
+@media screen and (max-width:991px){
+    .row div{
+    margin-bottom: 20px;
+    }
+}
 </style>

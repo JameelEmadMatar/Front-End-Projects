@@ -7,25 +7,25 @@
                     <img src="../../photos/brands/amazon.png">
                 </div>
                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/sony.png">
                 </div>
                                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/adidas.png">
                 </div>
                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/fia.png">
                 </div>
                                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/balance.png">
                 </div>
                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/samsung.png">
                 </div>
                                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/canon.png">
                 </div>
                 <div class="col-6 col-lg-3 inside p-3">
-                    <img src="../../photos/brands/amazon.png">
+                    <img src="../../photos/brands/puma.png">
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@ img{
 }
 @media screen and (min-width: 768px){
     .col-lg-3{
-        width: 23%;
+        width: 22%;
     }
     .inside{
         margin-right: 19px;
