@@ -46,6 +46,7 @@ function options(){
     store.dispatch('showSellectedProducts',optionsellect.value);
 }
 function searchDis(){
+    optionsellect.value = "All Projects";
     store.dispatch('showSearchProducts',searchWord.value);
 }
 onMounted(() => store.dispatch('showSellectedProducts',optionsellect.value))
