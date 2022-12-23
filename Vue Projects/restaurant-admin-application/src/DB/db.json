@@ -1,9 +1,26 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
+  "users": [
+    {
+      "name": "jameelmatar22",
+      "email": "jameelmatar1@gmail.com",
+      "password": "12341234",
+      "id": 1
+    },
+    {
+      "name": "jameelmatar22jdjd",
+      "email": "jameelmatar122@gmail.com",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "name": "jameelmatar222223",
+      "email": "jameelmatar12222@gmail.com",
+      "password": "jdhdhhdhhd",
+      "id": 4
+    }
+  ],
+  "login": {
+    "email": "jameelmatar1@gmail.com",
+    "password": "12341234"
+  }
 }

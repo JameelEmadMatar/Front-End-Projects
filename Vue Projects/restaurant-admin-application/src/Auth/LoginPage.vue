@@ -1,5 +1,5 @@
 <template>
-        <form method="post" @submit.prevent="submitForm">
+        <form method="get" @submit.prevent="login">
         <div class="main">
             <h1>Login</h1>
             <div class="form-details">
@@ -21,9 +21,12 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import axiosClient from '../axiosClient'
+import { useUserStore } from '../Store/user'
 import useVuelidate from '@vuelidate/core'
 import { required , email , minLength } from '@vuelidate/validators'
 import router from '@/Router/Router'
+const user = useUserStore()
 const form = ref({
     email : null,
     password : null,
@@ -33,14 +36,29 @@ const rules = {
     password: { required , minLength : minLength(8)},
 }
 const v$ = useVuelidate(rules,form);
-const submitForm = async () =>{
+const login = async () =>{
     const result = await v$.value.$validate();
     if(result){
-        router.push("/")
+        const returnUsers = await axiosClient.get(`/users?email=${form.value.email}&password=${form.value.password}`)
+        const users = returnUsers.data
+        if(users.length > 0){
+            // send login request and data exist and correct
+            user.updateUser(users[0])
+            router.push('/')
+        }else{
+            const returnAllUsers = await axiosClient.get('/users')
+            const allUsers = returnAllUsers.data
+            const emailFound = allUsers.filter((item) => item.email === form.value.email)
+            if(emailFound.length > 0){
+                alert('password wrong')
+            }else{
+                alert('email wrong')
+            }
+        }
     }else{
-        console.log("No");
+        console.log('validation error')
     }
-} 
+}
 </script>
 <style scoped>
 form{

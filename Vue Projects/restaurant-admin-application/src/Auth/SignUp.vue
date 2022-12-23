@@ -25,9 +25,12 @@
 </template>
 <script setup>
 import { ref } from 'vue'
+import axiosClient from '../axiosClient'
+import { useUserStore } from '../Store/user'
 import useVuelidate from '@vuelidate/core'
 import { required , email , minLength} from '@vuelidate/validators'
 import router from '@/Router/Router'
+const user = useUserStore()
 const form = ref({
     name : "",
     email : "",
@@ -42,9 +45,26 @@ const v$ = useVuelidate(rules,form);
 const submitForm = async () =>{
     const result = await v$.value.$validate();
     if(result){
-        router.push("/Login")
+        const returnUsers = await axiosClient.get('/users')
+        const users = returnUsers.data
+        const emailFound = users.filter((item) => item.email === form.value.email)
+        const nameFound = users.filter((item) => item.name === form.value.name)
+        if(emailFound.length > 0){
+            alert('email is found please enter new email')
+        }else if(nameFound.length > 0){
+            alert('name is found please enter new name')
+        }else{
+            await axiosClient.post('/users',{
+                name : form.value.name,
+                email : form.value.email,
+                password : form.value.password
+                }).then(res => {
+                    user.updateUser(res.data)
+                    router.push('/')
+            })
+        }
     }else{
-        console.log("No");
+        console.log('validation error')
     }
 } 
 </script>
