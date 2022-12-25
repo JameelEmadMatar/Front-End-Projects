@@ -2,9 +2,13 @@ import { createRouter , createWebHistory } from 'vue-router';
 import { useUserStore } from '../Store/user'
 const routes = [
     {
-        path:'/',
+        path:'/Home',
         name:'Home',
         component : import('../components/HomePage.vue'),
+        meta : {
+            title : 'Home',
+            Loged : true,
+        }
     },
     {
         path :'/SignUp',
@@ -16,12 +20,46 @@ const routes = [
         }
     },
     {
-        path :'/Login',
+        path :'/',
         name : "Login",
         component: import('../Auth/LoginPage.vue'),
         meta:{
             title:'Login',
             auth: true,
+        }
+    },
+    {
+        path:'/Profile',
+        name:'Profile',
+        component : import('../Views/ProfilePage.vue'),
+        meta : {
+            title : 'Profile',
+            Loged : true,
+        }
+    },
+    {
+        path:'/UpdateRestaurant/:id?',
+        name:'UpdateRestaurant',
+        component : import('../Views/UpdateRestaurant.vue'),
+        meta : {
+            title : 'UpdateRestaurant',
+            Loged : true,
+        }
+    },
+    {
+        path : '/Home/AddRestaurant',
+        name : 'AddRestaurant',
+        component : import('../Views/AddRestaurant.vue'),
+        meta : {
+            title : 'AddRestaurant',
+            Loged : true,
+        }
+    },
+    {
+        path: '/:path(.*)*',
+        component: import('../Views/NotFoundPage.vue'),
+        meta : {
+            title : '404 Not Found'
         }
     },
 ];
@@ -30,13 +68,20 @@ const router = createRouter({
     routes,
     linkActiveClass : 'active',
 });
-const defaultTitle = 'Resturant Project'
+const defaultTitle = 'Restaurants Project'
 router.afterEach((to) => {
-    document.title = to.meta.title || defaultTitle;
+    const user = useUserStore().getUser
+    if(user != null && to.meta.auth){ 
+        document.title = defaultTitle
+    }else{
+        document.title = to.meta.title || defaultTitle;
+    }
 })
 router.beforeEach((to,from,next) => {
     const user = useUserStore().getUser
-    if(user != null && to.meta.auth){ 
+    if(user != null && to.meta.auth ){
+        router.push('/Home')
+    }else if(user == null && to.meta.Loged){ 
         router.push('/')
     }
     next()

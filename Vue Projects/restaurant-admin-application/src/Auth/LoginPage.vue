@@ -26,6 +26,13 @@ import { useUserStore } from '../Store/user'
 import useVuelidate from '@vuelidate/core'
 import { required , email , minLength } from '@vuelidate/validators'
 import router from '@/Router/Router'
+let docTitle = document.title
+window.addEventListener("blur",()=>{
+  document.title = "Come Back :("
+})
+window.addEventListener("focus",()=>{
+  document.title = docTitle
+})
 const user = useUserStore()
 const form = ref({
     email : null,
@@ -44,15 +51,13 @@ const login = async () =>{
         if(users.length > 0){
             // send login request and data exist and correct
             user.updateUser(users[0])
-            router.push('/')
+            router.push('/Home')
         }else{
-            const returnAllUsers = await axiosClient.get('/users')
-            const allUsers = returnAllUsers.data
-            const emailFound = allUsers.filter((item) => item.email === form.value.email)
+            const emailFound = await (await axiosClient.get(`/users?email=${form.value.email}`)).data
             if(emailFound.length > 0){
-                alert('password wrong')
+                alert('Password Wrong')
             }else{
-                alert('email wrong')
+                alert('Email Not Found')
             }
         }
     }else{

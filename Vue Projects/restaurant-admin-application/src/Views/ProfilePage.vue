@@ -1,7 +1,7 @@
 <template>
     <form method="post" @submit.prevent="submitForm">
         <div class="main">
-            <h1>Sign Up</h1>
+            <h1>Update Account</h1>
             <div class="form-details">
                 <div class="error">
                     <input type="text" placeholder="User Name" name="name" v-model="form.name">
@@ -15,10 +15,7 @@
                     <input type="password" placeholder="Password" name="password" v-model="form.password">
                     <span v-for="error in v$.password.$errors" :key="error.$uid">{{error.$message}}</span>
                 </div>
-                <input type="submit" class="btn" value="Sign Up">
-            </div>
-            <div class="member">
-                <p>Already a member ? <router-link to="/">Login Here</router-link></p>
+                <input type="submit" class="btn" value="Update Account">
             </div>
         </div>
     </form>
@@ -30,11 +27,12 @@ import { useUserStore } from '../Store/user'
 import useVuelidate from '@vuelidate/core'
 import { required , email , minLength} from '@vuelidate/validators'
 import router from '@/Router/Router'
-const user = useUserStore()
+const user = useUserStore().getUser
 const form = ref({
-    name : "",
-    email : "",
-    password : "",
+    name : user.name,
+    email : user.email,
+    password : user.password,
+    id : user.id,
 })
 const rules = {
     name : { required , minLength:minLength(8) },
@@ -45,30 +43,56 @@ const v$ = useVuelidate(rules,form);
 const submitForm = async () =>{
     const result = await v$.value.$validate();
     if(result){
-        /*
-        const returnUsers = await axiosClient.get('/users')
-        const users = returnUsers.data
-        const emailFound = users.filter((item) => item.email === form.value.email)
-        const nameFound = users.filter((item) => item.name === form.value.name)
-        */
         const emailFound = await (await axiosClient.get(`/users?email=${form.value.email}`)).data
         const nameFound = await (await axiosClient.get(`/users?name=${form.value.name}`)).data
+        const passFound = await (await axiosClient.get(`/users?password=${form.value.password}`)).data
         if(emailFound.length > 0){
-            alert('email is found please enter new email')
-        }else if(nameFound.length > 0){
-            alert('name is found please enter new name')
+            const emailchange = emailFound.filter((item) => item.email === user.email)
+            if(emailchange.length > 0){
+                if(nameFound.length > 0){
+                    const namechange = nameFound.filter((item) => item.name === user.name)
+                    if(namechange.length > 0){
+                        const passchange = passFound.filter((item) => item.password === user.password)
+                        if(passchange.length > 0){
+                            alert('nothing changed')
+                        }else{
+                            await axiosClient.put(`/users/${form.value.id}`,{
+                                name : form.value.name,
+                                email : form.value.email,
+                                password : form.value.password
+                            })
+                            useUserStore().updateUser(form.value)
+                            alert('Profile Updated')
+                            router.push('/Home')
+                        }
+                    }else{
+                        alert('Name Is Found')
+                    }
+                }else{
+                    await axiosClient.put(`/users/${form.value.id}`,{
+                        name : form.value.name,
+                        email : form.value.email,
+                        password : form.value.password
+                    })
+                    useUserStore().updateUser(form.value)
+                    alert('Profile Updated')
+                    router.push('/Home')
+                }
+            }else{
+                alert('Email Is Found')
+            }
         }else{
-            await axiosClient.post('/users',{
+            await axiosClient.put(`/users/${form.value.id}`,{
                 name : form.value.name,
                 email : form.value.email,
                 password : form.value.password
-                }).then(res => {
-                    user.updateUser(res.data)
-                    router.push('/Home')
             })
+            useUserStore().updateUser(form.value)
+            alert('Profile Updated')
+            router.push('/Home')
         }
     }else{
-        alert('validation error')
+        alert('Validation Error')
     }
 } 
 </script>
