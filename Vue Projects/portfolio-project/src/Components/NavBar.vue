@@ -53,6 +53,7 @@ const onWidthChange = () => {
         ele.remove()
     }
   }else{
+    document.getElementsByClassName("main")[0].style.order = "0"
     if(document.getElementById("ulBtn")){
         const ele = document.getElementById("ulBtn")
         const clone = ele.cloneNode(true)
@@ -137,9 +138,7 @@ svg{
 .navbar-toggler[aria-expanded="true"]{
   order: 0;
 }
-.navbar-toggler , .navbar-toggler[aria-expanded="false"]{
-  order: 2;
-}
+
 @media screen and (max-width:991px) {
   .nav-link{
     border-bottom: 2px solid #eee;
