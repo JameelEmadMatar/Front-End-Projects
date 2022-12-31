@@ -15,7 +15,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navmenu">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto" id="myUl">
             <li class="nav-item">
               <router-link class="nav-link" aria-current="page" :to="{name:'Projects'}">Projects</router-link>
             </li>
@@ -27,8 +27,8 @@
             </li>
           </ul>
         </div>
-        <div class="main">
-          <button class="btn">Hire Me</button>
+        <div class="main" >
+          <button id="mainBtn" class="btn">Hire Me</button>
           <a href="#">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon text-liText-ternary-dark hover:text-gray-400 dark:text-liText-ternary-light dark:hover:text-liBorder-primary-light w-5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           </a>
@@ -37,8 +37,46 @@
     </nav>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from "vue"
 const active = ref(null)
+let windowWidth = ref(window.innerWidth)
+const onWidthChange = () => {
+  windowWidth.value = window.innerWidth
+  if(windowWidth.value < 992){
+    document.getElementsByClassName("navbar-brand")[0].style.order = "-2"
+    document.getElementsByClassName("main")[0].style.order = "-1"
+    if(document.getElementById("mainBtn")){
+        const ele = document.getElementById("mainBtn")
+        const clone = ele.cloneNode(true)
+        document.getElementById("myUl").appendChild(clone)
+        clone.id = "ulBtn"
+        ele.remove()
+    }
+  }else{
+    if(document.getElementById("ulBtn")){
+        const ele = document.getElementById("ulBtn")
+        const clone = ele.cloneNode(true)
+        document.getElementsByClassName("main")[0].prepend(clone)
+        document.getElementById("myUl").removeChild(document.getElementById("myUl").lastChild)
+        clone.id = "mainBtn"
+    }
+  }
+}
+onMounted(() => {
+  window.addEventListener('resize', onWidthChange)
+    if(windowWidth.value < 992){
+      document.getElementsByClassName("navbar-brand")[0].style.order = "-2"
+      document.getElementsByClassName("main")[0].style.order = "-1"
+      if(document.getElementById("mainBtn")){
+        const ele = document.getElementById("mainBtn")
+        const clone = ele.cloneNode(true)
+        document.getElementById("myUl").appendChild(clone)
+        clone.id = "ulBtn"
+        ele.remove()
+      }
+  }
+})
+onUnmounted(() => window.removeEventListener('resize', onWidthChange))
 </script>
 <style scoped>
 img{
@@ -70,6 +108,10 @@ ul li:hover a{
     cursor: pointer;
     font-size: 16px;
     outline: none;
+}
+#ulBtn{
+  margin: 0 10px;
+  width: 110px;
 }
 .btn:hover{
   opacity: 1;

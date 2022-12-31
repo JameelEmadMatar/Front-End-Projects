@@ -45,12 +45,6 @@ const v$ = useVuelidate(rules,form);
 const submitForm = async () =>{
     const result = await v$.value.$validate();
     if(result){
-        /*
-        const returnUsers = await axiosClient.get('/users')
-        const users = returnUsers.data
-        const emailFound = users.filter((item) => item.email === form.value.email)
-        const nameFound = users.filter((item) => item.name === form.value.name)
-        */
         const emailFound = await (await axiosClient.get(`/users?email=${form.value.email}`)).data
         const nameFound = await (await axiosClient.get(`/users?name=${form.value.name}`)).data
         if(emailFound.length > 0){

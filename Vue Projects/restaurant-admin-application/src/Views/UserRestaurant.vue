@@ -20,9 +20,9 @@
                             <td>{{restaurant.phone}}</td>
                             <td>{{restaurant.address}}</td>
                             <td>
-                            <button class="mx-1 btn btn-danger" v-on:click="deleteRestaurant(restaurant.id)">Delete</button>
+                            <button class="mx-1 btn btn-danger" v-on:click="deleteRestaurant(restaurant.id , restaurant.name)">Delete</button>
                             <router-link :to="{name:'UpdateRestaurant', params:{id:restaurant.id}}" class="mx-1 btn btn-danger">Update</router-link>
-                            <button class="mx-1 btn btn-danger">View</button>
+                            <router-link :to="{name:'RestaurantMenu', params:{name:restaurant.name}}" class="mx-1 btn btn-danger" :restaurant='restaurant'>Menu</router-link>
                             </td>
                         </tr>
                 </tbody>
@@ -45,10 +45,18 @@ onMounted(async() =>{
 async function getRestaurants() {
     restaurants.value = await (await axiosClient.get(`/restaurants?userId=${userId}`)).data
 }
-const deleteRestaurant = async(id) =>{
+const deleteRestaurant = async(id , name) =>{
     const answer = window.confirm("Delete Restaurant ?")
     if(answer){
         await axiosClient.delete(`/restaurants/${encodeURIComponent(id)}`)
+        const cat = await (await axiosClient.get(`/categories?restaurantName=${name}`)).data
+        for(let i = 0 ; i < cat.length ; i++){
+            await axiosClient.delete(`/categories/${encodeURIComponent(cat[i].id)}`)
+            const it = await (await axiosClient.get(`/items?restaurantName=${name}`)).data
+            for(let j = 0 ; j < it.length ; j++){
+                await axiosClient.delete(`/items/${encodeURIComponent(it[j].id)}`)
+            }
+        }
         getRestaurants()
     }
 }
@@ -57,6 +65,14 @@ const deleteAll = async() =>{
     if(answer){
         for(let i = 0 ; i<restaurants.value.length ; i++){
             await axiosClient.delete(`/restaurants/${encodeURIComponent(restaurants.value[i].id)}`)
+            const cat = await (await axiosClient.get(`/categories?restaurantName=${restaurants.value[i].name}`)).data
+            for(let k = 0 ; k < cat.length ; k++){
+                await axiosClient.delete(`/categories/${encodeURIComponent(cat[k].id)}`)
+                const it = await (await axiosClient.get(`/items?restaurantName=${restaurants.value[i].name}`)).data
+                for(let j = 0 ; j < it.length ; j++){
+                    await axiosClient.delete(`/items/${encodeURIComponent(it[j].id)}`)
+                }
+            }
         }
         getRestaurants()
     }

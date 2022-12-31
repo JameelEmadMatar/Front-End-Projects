@@ -55,9 +55,8 @@ onMounted(async() =>{
         form.value.name = restaurantData.value[0].name
         form.value.phone = restaurantData.value[0].phone
         form.value.address = restaurantData.value[0].address
-        restaurantCat.value = restaurantData.value[0].categories
     }else{
-        router.push('/Home')
+      router.push('/Home')
     }
 })
 const form = ref({

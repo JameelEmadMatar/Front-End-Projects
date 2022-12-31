@@ -53,7 +53,6 @@ const addRestaurant = async () =>{
                 phone : form.value.phone,
                 address : form.value.address,
                 userId : user.getUser.id,
-                categories : null,
             })
             router.push('/Home')
         }

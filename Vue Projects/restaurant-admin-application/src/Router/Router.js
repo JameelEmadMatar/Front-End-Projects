@@ -56,6 +56,42 @@ const routes = [
         }
     },
     {
+        path : '/Home/RestaurantMenu/:name?',
+        name : 'RestaurantMenu',
+        component : import('../Views/RestaurantMenu.vue'),
+        meta : {
+            title : 'RestaurantMenu',
+            Loged : true,
+        }
+    },
+    {
+        path : '/Home/RestaurantMenu/:name?/AddItems',
+        name : 'AddItems',
+        component : import('../Views/AddItems.vue'),
+        meta : {
+            title : 'AddItems',
+            Loged : true,
+        }
+    },
+    {
+        path : '/Home/RestaurantMenu/:name?/UpdateItem/:id?',
+        name : 'UpdateItem',
+        component : import('../Views/UpdateItem.vue'),
+        meta : {
+            title : 'UpdateItem',
+            Loged : true,
+        }
+    },
+    {
+        path : '/Home/RestaurantMenu/:name?/ViewCategory',
+        name : 'ViewCategory',
+        component : import('../Views/ViewCategory.vue'),
+        meta : {
+            title : 'ViewCategory',
+            Loged : true,
+        }
+    },
+    {
         path: '/:path(.*)*',
         component: import('../Views/NotFoundPage.vue'),
         meta : {

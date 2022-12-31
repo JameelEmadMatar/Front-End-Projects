@@ -15,27 +15,55 @@
   ],
   "restaurants": [
     {
-      "name": "JAMEEL EMAD MATAR35",
+      "name": "JAMEEL EMAD MATAR1",
       "phone": "+970 597180307",
       "address": "Palestine - Gaza Strip - Beit Lahia project",
       "userId": 1,
-      "id": 3,
-      "categories": [
-        {
-          "starters": [
-            "Spring Rolls",
-            "French Onion Soup"
-          ]
-        }
-      ]
+      "id": 1
     },
     {
       "name": "JAMEEL EMAD MATAR 55066",
       "phone": "+970 597180307w",
       "address": "Palestine - Gaza Strip - Beit Lahia project",
       "userId": 1,
-      "categories": null,
-      "id": 4
+      "id": 2
+    }
+  ],
+  "categories": [
+    {
+      "categoryName": "breakFast",
+      "restaurantName": "JAMEEL EMAD MATAR 55066",
+      "id": 1
+    },
+    {
+      "categoryName": "breakFast",
+      "restaurantName": "JAMEEL EMAD MATAR1",
+      "id": 2
+    },
+    {
+      "categoryName": "dener",
+      "restaurantName": "JAMEEL EMAD MATAR1",
+      "id": 3
+    }
+  ],
+  "items": [
+    {
+      "itemName": "shawrma",
+      "categoryName": "breakFast",
+      "price": 10,
+      "quantities": 5,
+      "description": "lorem lorem lorem ....",
+      "restaurantName": "JAMEEL EMAD MATAR 55066",
+      "id": 1
+    },
+    {
+      "itemName": "kola",
+      "categoryName": "breakFast",
+      "price": 10,
+      "quantities": 5,
+      "description": "kola kola lorem ....",
+      "restaurantName": "JAMEEL EMAD MATAR1",
+      "id": 2
     }
   ]
 }
