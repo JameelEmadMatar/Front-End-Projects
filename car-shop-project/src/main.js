@@ -4,9 +4,12 @@ import "bootstrap"
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faGear } from '@fortawesome/free-solid-svg-icons'
+import { faAnglesRight, faClock, faGear , faPhone , faFax , faEnvelope ,faLocationDot} from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faInstagram, faYoutube  , faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faGear)
+import router from "./router/router"
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+library.add(faGear , faFacebook , faInstagram , faLinkedin , faYoutube , faClock , faAnglesRight , faPhone , faFax , faEnvelope , faLocationDot)
+
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).mount('#app')

@@ -77,6 +77,7 @@
     .brand-info{
         flex: 0 0 auto;
         width: 50%;
+        padding: 20px;
     }
 }
 </style>
