@@ -1,13 +1,13 @@
 <template>
-        <form method="get">
+        <form method="post" @submit.prevent="login">
         <div class="main">
             <h1>Login</h1>
             <div class="form-details">
                 <div class="error">
-                    <input type="email" placeholder="Email" name="email" >
+                    <input type="email" placeholder="Email" name="email" v-model="form.email">
                 </div>
                 <div class="error">
-                    <input type="password" placeholder="Password" name="password" >
+                    <input type="password" placeholder="Password" name="password" v-model="form.password">
                 </div>
                 <input type="submit" class="btn" value="Login">
             </div>
@@ -17,13 +17,29 @@
         </div>
     </form>
 </template>
+<script setup>
+import router from '@/router/router'
+import {  ref} from 'vue'
+import { useUserStore } from '../Store/user'
+const user = useUserStore()
+// onMounted(() => user.updateUser({"name" : "jameel"}))
+const form = ref({
+    email : null ,
+    password : null,
+})
+function login(){
+    if(form.value.email == 'jameelmatar1@gmail.com' && form.value.password == '123'){
+    user.updateUser({"email" : form.value.email , "password" : form.value.password})
+    router.push('/')
+}}
+</script>
 <style scoped>
 form{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    min-height: 100vh;
+    min-height: 500px;
 }
 .main{
     width: 350px;

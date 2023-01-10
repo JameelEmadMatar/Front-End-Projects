@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import App from './App.vue'
@@ -9,7 +11,8 @@ import { faFacebook, faInstagram, faYoutube  , faLinkedin } from '@fortawesome/f
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import router from "./router/router"
-
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 library.add(faGear , faFacebook , faInstagram , faLinkedin , faYoutube , faClock , faAnglesRight , faPhone , faFax , faEnvelope , faLocationDot)
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).mount('#app')
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).use(pinia).mount('#app')

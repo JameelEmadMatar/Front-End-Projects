@@ -10,31 +10,43 @@
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-            <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
+                <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
+                <router-link class="nav-link" to="/about">About</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="shop">Shop</router-link>
+                <router-link class="nav-link" to="/shop">Shop</router-link>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
+                <router-link class="nav-link" to="/blog">Blog</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="/Contact">Contact</router-link>
+                <router-link class="nav-link" to="/Contact">Contact</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="signup">SignUp</router-link>
+                <router-link class="nav-link" to="signup" v-if="user == null">SignUp</router-link>
             </li>
             <li class="nav-item">
-            <router-link class="nav-link" to="login">Login</router-link>
+                <router-link class="nav-link" to="login" v-if="user == null">Login</router-link>
+            </li>
+            <li class="nav-item logout">
+                <button class="nav-link" v-if="user != null" @click="logout">LogOut</button>
             </li>
         </ul>
         </div>
     </div>
     </nav>
 </template>
+<script setup>
+import router from '@/router/router'
+import { useUserStore } from '../components/Store/user'
+const  user = useUserStore().getUser
+function logout(){
+    useUserStore().updateUser(null)
+    router.push('/login')
+}
+</script>
 <style scoped>
 nav{
     padding: 20px 0;
@@ -57,6 +69,13 @@ nav{
     height: 3px;
     top: 5px;
     left: 35%;
+}
+.logout{
+    margin-left: -20px;
+}
+.nav-item button{
+    background-color: transparent;
+    border: none;
 }
 .nav-item:hover::before{
     content: '';

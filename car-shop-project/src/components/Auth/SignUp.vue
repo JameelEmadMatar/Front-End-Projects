@@ -22,7 +22,7 @@
                 <input type="submit" value="Register" class="submit">
             </div>
             <div class="member">
-                <p>Have An Account <router-link to="/login">Login Here</router-link></p>
+                <p>Have An Account ? <router-link to="/login">Login Here</router-link></p>
             </div>
 
         </div>
@@ -34,7 +34,7 @@ form{
     justify-content: center;
     align-items: center;
     background-color: black;
-    min-height: 100vh;
+    min-height: 600px;
 }
 .main{
     width: 350px;
