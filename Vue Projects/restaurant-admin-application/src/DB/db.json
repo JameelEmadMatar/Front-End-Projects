@@ -7,20 +7,13 @@
       "id": 1
     },
     {
-      "name": "jameelmatar10",
-      "email": "jameelmatar10@gmail.com",
+      "name": "jameelmatar2",
+      "email": "jameelmatar2@gmail.com",
       "password": "12341234",
       "id": 2
     }
   ],
   "restaurants": [
-    {
-      "name": "JAMEEL EMAD MATAR1",
-      "phone": "+970 597180307",
-      "address": "Palestine - Gaza Strip - Beit Lahia project",
-      "userId": 1,
-      "id": 1
-    },
     {
       "name": "JAMEEL EMAD MATAR 55066",
       "phone": "+970 597180307w",
@@ -36,14 +29,9 @@
       "id": 1
     },
     {
-      "categoryName": "breakFast",
-      "restaurantName": "JAMEEL EMAD MATAR1",
+      "categoryName": "Appeteasers",
+      "restaurantName": "JAMEEL EMAD MATAR 55066",
       "id": 2
-    },
-    {
-      "categoryName": "dener",
-      "restaurantName": "JAMEEL EMAD MATAR1",
-      "id": 3
     }
   ],
   "items": [
@@ -57,12 +45,12 @@
       "id": 1
     },
     {
-      "itemName": "kola",
-      "categoryName": "breakFast",
-      "price": 10,
-      "quantities": 5,
-      "description": "kola kola lorem ....",
-      "restaurantName": "JAMEEL EMAD MATAR1",
+      "itemName": "Chicken Livers and Portuguese Roll",
+      "categoryName": "Appeteasers",
+      "price": "20",
+      "quantities": "50",
+      "description": "Chicken Livers Topped with PERi-PERi Sauce, Served with A Roll To Soak Up The Sauce",
+      "restaurantName": "JAMEEL EMAD MATAR 55066",
       "id": 2
     }
   ]

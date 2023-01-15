@@ -24,14 +24,14 @@
             <li class="nav-item">
                 <router-link class="nav-link" to="/Contact">Contact</router-link>
             </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="signup" v-if="user == null">SignUp</router-link>
+            <li class="nav-item" v-if="user == null">
+                <router-link class="nav-link" to="/signup">SignUp</router-link>
             </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="login" v-if="user == null">Login</router-link>
+            <li class="nav-item" v-if="user == null">
+                <router-link class="nav-link" to="/login">Login</router-link>
             </li>
-            <li class="nav-item logout">
-                <button class="nav-link" v-if="user != null" @click="logout">LogOut</button>
+            <li class="nav-item logout" v-if="user != null">
+                <button class="nav-link" @click="logout">LogOut</button>
             </li>
         </ul>
         </div>
@@ -41,11 +41,12 @@
 <script setup>
 import router from '@/router/router'
 import { useUserStore } from '../components/Store/user'
-const  user = useUserStore().getUser
+const user = useUserStore().getUser
 function logout(){
     useUserStore().updateUser(null)
     router.push('/login')
 }
+
 </script>
 <style scoped>
 nav{
@@ -70,9 +71,6 @@ nav{
     top: 5px;
     left: 35%;
 }
-.logout{
-    margin-left: -20px;
-}
 .nav-item button{
     background-color: transparent;
     border: none;
@@ -92,6 +90,9 @@ nav{
     }
     .navbar-brand{
         margin-bottom: 20px;
+    }
+    .nav-item .router-link-exact-active::before{
+        display: none;
     }
 }
 </style>

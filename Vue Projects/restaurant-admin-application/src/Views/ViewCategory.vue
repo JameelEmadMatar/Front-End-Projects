@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="main">
-            <button class="btn btn-primary">Add Categories</button>
+            <router-link class="btn btn-primary" :to="{name:'AddCategory', params:{name:route.params.name}}">Add Categories</router-link>
             <router-link class="btn btn-success" :to="{name:'RestaurantMenu', params:{name:route.params.name}}">Back To Menu</router-link>
         </div>
         <div class="info" v-for="rest of restaurant" :key="rest.id">
@@ -58,6 +58,8 @@ const deleteAllItems = async() =>{
 <style scoped>
 .main{
     margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
 }
 .main button{
     margin-right: 10px;

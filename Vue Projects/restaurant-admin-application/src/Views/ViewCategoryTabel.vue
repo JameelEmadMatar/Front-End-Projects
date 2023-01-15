@@ -12,7 +12,7 @@
                     <td>{{category.categoryName}}</td>
                     <td>
                         <button class="mx-1 btn btn-primary" @click="deleteCategory(category.categoryName,category.id)">Delete</button>
-                        <button class="mx-1 btn btn-danger">Update</button>
+                        <router-link :to="{name:'UpdateCategory', params:{name:restaurantName , id : category.id}}" class="mx-1 btn btn-danger">Update</router-link>
                     </td>
                 </tr>
             </tbody>
