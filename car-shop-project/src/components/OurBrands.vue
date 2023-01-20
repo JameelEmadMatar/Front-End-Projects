@@ -73,6 +73,9 @@
     background-color: #fff;
     margin-bottom: 20px;
 }
+img{
+    max-width: 100%;
+}
 @media screen and (max-width:767px) {
     .brand-info{
         flex: 0 0 auto;

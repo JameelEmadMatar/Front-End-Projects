@@ -65,7 +65,7 @@
                                 <span>$28.00</span>
                             </div>
                         </div>
-                                                <div class=" col-sm-6 col-md-3 main">
+                            <div class=" col-sm-6 col-md-3 main">
                             <div>
                                 <img src="@/assets/Items/5.jpg" >
                             </div>
@@ -105,7 +105,7 @@
                                 <span>$28.00</span>
                             </div>
                         </div>
-                                                <div class=" col-sm-6 col-md-3 main">
+                        <div class=" col-sm-6 col-md-3 main">
                             <div>
                                 <img src="@/assets/Items/3.jpg" >
                             </div>

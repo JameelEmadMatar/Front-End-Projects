@@ -275,12 +275,6 @@
 .card-body h6:hover{
     color: #D22E2E;
 }
-.par{
-    border: 1px solid #eee;
-    display: flex;
-    padding: 5px;
-    margin-top: 15px;
-}
 ul{
     display: flex;
     border: 1px solid #e5e5e5;
@@ -307,6 +301,11 @@ p{
 @media screen and (min-width:768px) {
     .one{
         width: 30%;
+    }
+}
+@media screen and (max-width:575px) {
+    .one{
+        width: 90%;
     }
 }
 </style>

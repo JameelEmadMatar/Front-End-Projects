@@ -1,41 +1,41 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <router-link  to = '/' class="navbar-brand">
-            <img src="@/assets/logo.png">
-        </router-link>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="/about">About</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="/shop">Shop</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="/blog">Blog</router-link>
-            </li>
-            <li class="nav-item">
-                <router-link class="nav-link" to="/Contact">Contact</router-link>
-            </li>
-            <li class="nav-item" v-if="user == null">
-                <router-link class="nav-link" to="/signup">SignUp</router-link>
-            </li>
-            <li class="nav-item" v-if="user == null">
-                <router-link class="nav-link" to="/login">Login</router-link>
-            </li>
-            <li class="nav-item logout" v-if="user != null">
-                <button class="nav-link" @click="logout">LogOut</button>
-            </li>
-        </ul>
+        <div class="container">
+            <router-link  to = '/' class="navbar-brand">
+                <img src="@/assets/logo.png">
+            </router-link>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/about">About</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/shop">Shop</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/blog">Blog</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/Contact">Contact</router-link>
+                </li>
+                <li class="nav-item" v-if="user == null">
+                    <router-link class="nav-link" to="/signup">SignUp</router-link>
+                </li>
+                <li class="nav-item" v-if="user == null">
+                    <router-link class="nav-link" to="/login">Login</router-link>
+                </li>
+                <li class="nav-item logout" v-if="user != null">
+                    <button class="nav-link" @click="logout">LogOut</button>
+                </li>
+            </ul>
+            </div>
         </div>
-    </div>
     </nav>
 </template>
 <script setup>

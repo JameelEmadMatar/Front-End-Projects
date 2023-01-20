@@ -71,9 +71,6 @@
   </button>
 </div>
 </template>
-<script setup>
-
-</script>
 <style scoped>
 .carousel-indicators .active{
   background-color: #D22E2E;
