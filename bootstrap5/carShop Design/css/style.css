@@ -1,0 +1,271 @@
+/* Start Body And Root  */
+:root{
+    --main-color:#D22E2E;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+/* End Body And Root  */
+
+/* Start Slider */
+.image-slider .carousel-indicators .active{
+    background-color: var(--main-color)
+}
+.image-slider .carousel-inner .carousel-item{
+    position: relative;
+}
+.image-slider .carousel-inner .carousel-item img{
+    height: 600px !important;
+}
+.image-slider .carousel-inner .carousel-item .black{
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+.image-slider .carousel-inner .carousel-item .content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 70px;
+    text-align: center;
+    color: #fff;
+}
+.image-slider .carousel-inner .carousel-item .content .content-logo svg{
+    width: 60px;
+    height: 60px;
+    background-color: var(--main-color);
+    padding: 20px;
+}
+.image-slider .carousel-inner .carousel-item div p{
+    margin: 30px 0;
+}
+.image-slider .carousel-inner .carousel-item div h2{
+    text-transform: uppercase;
+    font-size: 55px;
+    font-family: arial;
+    font-weight: bold;
+}
+.image-slider .carousel-inner .carousel-item div h2 span{
+    color: var(--main-color)
+}
+.image-slider .carousel-inner .carousel-item .btns{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+.image-slider .carousel-inner .carousel-item .btns button{
+    outline: none;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.image-slider .carousel-inner .carousel-item .btns .one{
+    color: #fff;
+    background-color: var(--main-color);
+    margin-right: 20px;
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+    .image-slider .carousel-inner .carousel-item div h2{
+        font-size: 40px;
+    }
+    .image-slider .carousel-inner .carousel-item div .two-p{
+        font-size: 12px;
+    }
+}
+    @media screen and (min-width:550px) and (max-width:767px) {
+    .image-slider .carousel-inner .carousel-item div h2{
+        font-size: 20px;
+    }
+    .image-slider .carousel-inner .carousel-item div .two-p{
+        font-size: 9px;
+    }
+}
+    @media screen and (max-width:549px) {
+    .image-slider .carousel-inner .carousel-item div h2{
+        font-size: 20px;
+    }
+    .image-slider .carousel-inner .carousel-item div .two-p{
+        font-size: 6px;
+    }
+    .image-slider .carousel-inner .carousel-item .btns button {
+        padding: 10px;
+        margin-right: 10px;
+    }
+}
+/* End Slider */
+
+/* Start Car View */
+.car-view{
+    padding:100px 0;
+}
+.car-view .main{
+    display: flex;
+    justify-content: center;
+}
+.car-view .col-sm-6{
+    margin-bottom: 20px;
+}
+.car-view .main .img-div{
+    position: relative;
+}
+.car-view .main .img-div .black{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8
+}
+.car-view .main .img-div .content{
+    position: absolute;
+    left: 10%;
+    top: 50%;
+}
+.car-view .main .img-div .content .point{
+    background-color: var(--main-color);
+    width: 10px;
+    height: 10px;
+}
+.car-view .main .img-div .content .content-text{
+    margin-top: 10px;
+}
+.car-view .main .img-div .content .content-text h2{
+    margin: 0;
+}
+.car-view .main .img-div .content .content-text p{
+    color: var(--main-color);
+}
+@media screen and (max-width:575px) {
+    .car-view{
+        padding: 40px 0;
+    }
+}
+/* End Car View */
+
+/* Start New Items */
+.new-items .info{
+    margin-bottom: 70px;
+}
+.new-items .info .info-text{
+    display: flex;
+    align-items: center;
+}
+.new-items .info-text .point{
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    margin-right: 15px;
+}
+.new-items .info .info-text .we-get{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.new-items .info .items{
+    font-weight: bold;
+    font-size: 25px;
+}
+.new-items .carousel{
+    margin-bottom: 120px;
+}
+.new-items .carousel .carousel-indicators{
+    margin-bottom: -60px;
+}
+.new-items .carousel .carousel-indicators button{
+    background-color: #666666;
+    width: 20px;
+}
+.new-items .carousel .carousel-indicators .active{
+    background-color: var(--main-color);
+}
+.new-items .carousel .carousel-inner .carousel-item .main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.new-items .carousel .carousel-inner .carousel-item .main .content-text{
+    margin-top: 20px;
+}
+.new-items .carousel .carousel-inner .carousel-item .main .content-text p {
+    margin-bottom: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.new-items .carousel .carousel-inner .carousel-item .main .content-text h4{
+    cursor: pointer;
+}
+.new-items .carousel .carousel-inner .carousel-item .main .content-text span{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.new-items .carousel .carousel-inner .carousel-item .main .content-text p:hover , .new-items .carousel .carousel-inner .carousel-item .main .content-text h4:hover{
+    color: var(--main-color);
+}
+@media screen and (max-width:575px) {
+    .new-items .carousel .carousel-inner .carousel-item .main{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+    .new-items .info{
+        margin-bottom: 40px;
+    }
+}
+/* End New Items */
+
+/* Start OurBrand */
+.brands{
+    background-color: #F9F9F9;
+    padding: 80px 0;
+    margin-bottom: 80px;
+}
+.brands .info{
+    margin-bottom: 70px;
+}
+.brands .info .info-text{
+    display: flex;
+    align-items: center;
+}
+.brands .info .info-text .point{
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    margin-right: 15px;
+}
+.brands .info .info-text .we-get{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.brands .info .items{
+    font-weight: bold;
+    font-size: 25px;
+}
+.brands .info .car-info{
+    color: #A6A6A6;
+    margin: 30px 0;
+}
+.brands .brand-info{
+    padding: 40px;
+    border: 1px solid #eee;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+.brands .brand-info img{
+    max-width: 100%;
+}
+@media screen and (max-width:767px) {
+    .brands .brand-info{
+        flex: 0 0 auto;
+        width: 50%;
+        padding: 20px;
+    }
+}
+/* End OurBrand */
