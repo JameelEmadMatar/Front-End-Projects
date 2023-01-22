@@ -1,0 +1,46 @@
+.navbar{
+    padding: 20px 0;
+}
+.navbar .navbar-brand{
+    cursor: pointer;
+}
+.navbar .nav-item{
+    position: relative;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.navbar .nav-item .active {
+    color: var(--main-color) !important;
+}
+.navbar .nav-item .active::before{
+    content: '';
+    position: absolute;
+    background-color: var(--main-color);
+    width: 20px;
+    height: 3px;
+    top: 5px;
+    left: 35%;
+}
+.navbar .nav-item:hover::before{
+    content: '';
+    position: absolute;
+    background-color: var(--main-color);
+    width: 20px;
+    height: 3px;
+    top: 5px;
+    left: 35%;
+}
+.navbar .nav-item .nav-link:hover {
+    color: var(--main-color) ;
+}
+@media screen and (max-width:991px) {
+    .nav-item .active::before , .nav-item:hover::before{
+        display: none;
+    }
+    .navbar-brand{
+        margin-bottom: 20px;
+    }
+    .nav-item .router-link-exact-active::before{
+        display: none;
+    }
+}

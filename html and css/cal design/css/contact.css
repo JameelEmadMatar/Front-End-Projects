@@ -1,0 +1,98 @@
+/* Start Body And Root  */
+:root{
+    --main-color:#D22E2E;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+/* End Body And Root  */
+
+.contact .contact-info {
+    background-color: #f6f6f6;
+    padding: 40px 0;
+}
+.contact .contact-info .contact-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact .contact-info .contact-details h2 {
+    margin: 0;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: arial;
+}
+.contact .contact-info .contact-details div {
+    color: #cfcfd8;
+}
+.contact .contact-info .contact-details div a {
+    color: #cfcfd8;
+    text-decoration: none;
+}
+.contact .contact-info .contact-details div a:first-child:hover {
+    color: var(--main-color);
+}
+.contact .my-form {
+    padding: 80px 0;
+}
+.contact .my-form .row .contact-form {
+    padding: 0;
+}
+.contact .my-form .row .contact-form input {
+    width: 45.5%;
+    margin: 0 2%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    color: #b2b2b2;
+    outline: none;
+}
+.contact .my-form .row .contact-form textarea {
+    width: 95%;
+    margin: 20px 2%;
+    height: 200px;
+    resize: none;
+    border: 1px solid #e5e5e5;
+    color: #b2b2b2;
+    outline: none;
+    padding: 10px;
+}
+.contact .my-form .row .contact-form button {
+    padding: 10px;
+    width: 95%;
+    margin: 0 2%;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    border: none;
+    background-color: var(--main-color);
+    font-weight: bold;
+}
+.contact .my-form .row .description .one {
+    color: #a6a6a6;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 22px;
+    margin: 0;
+}
+.contact .my-form .row .description .details {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.contact .my-form .row .description .details .phone {
+    margin-top: 15px;
+}
+.contact .my-form .row .description .details svg {
+    margin-right: 10px;
+    color: var(--main-color);
+}
+.contact .my-form .row .description .details span {
+    color: #666;
+}
+
+@media screen and (max-width:767px) {
+    .contact .my-form .row .contact-form{
+        margin-bottom : 50px;
+    }
+}

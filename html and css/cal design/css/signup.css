@@ -1,0 +1,82 @@
+/* Start Body And Root  */
+:root{
+    --main-color:#D22E2E;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+/* End Body And Root  */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    min-height: 600px;
+}
+form .main {
+    width: 350px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+form .main h1 {
+    margin: 20px 0;
+    text-align: center;
+    font-family: arial;
+}
+form .main .form-details {
+    display: flex;
+    flex-direction: column;
+}
+form .main .form-details .error span {
+    margin-left: 25px;
+    color: red;
+}
+form .main .form-details .check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+form .main .form-details .check input {
+    width: 20px;
+}
+form .main .form-details .check p {
+    margin: 0;
+    margin-left: 10px;
+    color: #666;
+    cursor: pointer;
+}
+form .main .form-details .check p span {
+    color: black;
+}
+form .main .form-details .check p span:hover {
+    color: var(--main-color);
+}
+form .main .form-details .submit {
+    color: #fff;
+    background-color: var(--main-color);
+    margin-bottom: 20px;
+}
+form .main input {
+    border: none;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 12px;
+    outline: none;
+    background-color: #e4e4e4;
+    width: 85%;
+    margin-left: 25px;
+}
+form .main .member p {
+    color: #5b595c;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: arial;
+}
+form .main .member p a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+form .main .member p a:hover {
+    opacity: 0.8;
+}

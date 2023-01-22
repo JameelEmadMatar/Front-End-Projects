@@ -1,0 +1,291 @@
+/* Start Body And Root  */
+:root{
+    --main-color:#D22E2E;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+/* End Body And Root  */
+
+/* Start About Info */
+.about-info{
+    background-color: #F6F6F6;
+    padding: 40px 0;
+}
+.about-info .about-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.about-info .about-details h2{
+    margin: 0;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: arial;
+}
+.about-info .about-details div , .about-info .about-details div a{
+    color: #CFCFD8
+}
+.about-info .about-details div a{
+    text-decoration: none
+}
+.about-info .about-details div a:first-child:hover{
+    color: var(--main-color)
+}
+/* End About Info */
+
+/* Start Company And Features */
+.main-div{
+    padding: 40px 0;
+}
+.main-div .info{
+    margin-bottom: 70px;
+}
+.main-div .info .info-text{
+    display: flex;
+    align-items: center;
+}
+.main-div .info .info-text .point{
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    margin-right: 15px;
+}
+.main-div .info .info-text .history{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.main-div .info .comp{
+    font-weight: bold;
+    font-size: 25px;
+}
+.main-div .accordion .accordion-item .accordion-button{
+    font-weight: bold;
+    background-color: #fff;
+    color: black;
+    box-shadow: none;
+}
+.main-div .accordion .accordion-item .accordion-button::after{
+    content: '+';
+    color: var(--main-color);
+    width: 15px;
+    height: 2px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.main-div .accordion .accordion-item .accordion-button[aria-expanded = "true"]::after{
+    content: '-';
+    top: 30px;
+}
+.main-div .accordion .accordion-item .accordion-collapse .accordion-body{
+    color: #A6A6A6;
+}
+
+.main-div .sec-row{
+    gap: 20px;
+    justify-content: center;
+}
+.main-div .one{
+    background-color: #FAFAFA;
+    padding: 30px 20px;
+    border: 1px solid #eee;
+}
+.main-div .one h4{
+    margin: 15px 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.main-div .one p{
+    color: #A6A6A6;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 13px;
+}
+.main-div svg{
+    width: 40px;
+    height: 40px;
+    color: var(--main-color);
+}
+@media screen and (max-width:991px) {
+    .main-div .info{
+        text-align: center;
+    }
+    .main-div .info .info-text{
+        margin: auto 40%;
+    }
+    .main-div .col-lg-6.first{
+        margin-bottom: 60px;
+    }
+}
+@media screen and (max-width:575px){
+    .main-div .info .info-text{
+        margin: auto 44%;
+    }
+    .main-div .info .info-text .point{
+        display: none;
+    }
+    .main-div .info .history{
+        font-size: 10px;
+    }
+}
+/* End Company And Features */
+
+/* Start LatestNews */
+.news{
+    background-color: #F9F9F9;
+    padding: 80px 0;
+}
+.news .info{
+    margin-bottom: 70px;
+}
+.news .info .info-text{
+    display: flex;
+    align-items: center;
+}
+.news .info .info-text .point{
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    margin-right: 15px;
+}
+.news .info .info-text .we-get{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.news .info .items{
+    font-weight: bold;
+    font-size: 25px;
+}
+.news .info .car-info{
+    color: #A6A6A6;
+    margin: 30px 0;
+}
+.news  .row{
+    gap: 20px;
+    justify-content: center;
+}
+.news .one{
+    background-color: #fff;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.news .one img{
+    width: 100%;
+    cursor: pointer;
+}
+.news .one .card-body{
+    padding: 15px;
+}
+.news .one .card-body h6{
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.news .one .card-body h6:hover{
+    color: var(--main-color);
+}
+.news .one ul{
+    display: flex;
+    border: 1px solid #e5e5e5;
+    font-size: 11px;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 15px 0;
+}
+.news .one ul li{
+    list-style: none;
+    padding: 0 10px;
+}
+.news .one ul li span{
+    color: var(--main-color);
+}
+.news .one ul li .s-1{
+    color: #b2b2b2;
+}
+.news .one p{
+    margin: 10px 0;
+    font-size: 13px;
+    color: #a6a6a6;
+}
+@media screen and (min-width:768px) {
+    .news .one{
+        width: 30%;
+    }
+}
+@media screen and (max-width:575px) {
+    .news .one{
+        width: 90%;
+    }
+}
+/* End LatestNews */
+
+/* Start OurTeam */
+.team{
+    padding: 80px 0;
+}
+.team .info{
+    margin-bottom: 70px;
+}
+.team .info .info-text{
+    display: flex;
+    align-items: center;
+}
+.team .info .info-text .point{
+    width: 10px;
+    height: 10px;
+    background-color: var(--main-color);
+    margin-right: 15px;
+}
+.team .info .info-text .we-get{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.team .info .items{
+    font-weight: bold;
+    font-size: 25px;
+}
+.team .info .car-info{
+    color: #A6A6A6;
+    margin: 30px 0;
+}
+.team .row{
+    justify-content: center;
+}
+.team .one{
+    border: 1px solid #e5e5e5;
+    padding: 0;
+    background-color: #fff;
+}
+.team .one img{
+    width: 100%;
+}
+.team .one .person-details{
+    padding: 15px;
+}
+.team .one .person-details h3{
+    font-size: 16px;
+}
+.team .one .person-details p{
+    font-size: 12px;
+}
+@media screen and (max-width:991px) {
+    .team .one{
+        width: 45%;
+    }
+    .team .row{
+        gap: 20px;
+    }
+}
+@media screen and (min-width:992px) {
+    .team .one{
+        width: calc(25% - 60px);
+    }
+    .team .row{
+        gap: 20px;
+    }
+}
+/* End OurTeam */
