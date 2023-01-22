@@ -1,7 +1,7 @@
 <template>
-    <div class="about-info">
+    <div class="contact-info">
         <div class="container">
-            <div class="about-details">
+            <div class="contact-details">
                 <h2>Contact</h2>
                 <div>
                     <router-link to="/">Home</router-link>
@@ -13,11 +13,11 @@
     </div>
 </template>
 <style scoped>
-.about-info{
+.contact-info{
     background-color: #F6F6F6;
     padding: 40px 0;
 }
-.about-details{
+.contact-details{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,7 +28,7 @@ h2{
     font-weight: bold;
     font-family: arial;
 }
-.about-details div , a{
+.contact-details div , a{
     color: #CFCFD8;
 }
 a{

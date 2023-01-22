@@ -1,5 +1,5 @@
 <template>
-        <form>
+    <form>
         <div class="main">
             <h1>Register Form</h1>
             <div class="form-details">
@@ -24,7 +24,6 @@
             <div class="member">
                 <p>Have An Account ? <router-link to="/login">Login Here</router-link></p>
             </div>
-
         </div>
     </form>
 </template>
@@ -50,7 +49,7 @@ h1{
     text-align: center;
     font-family: arial;
 }
-input , .btn{
+input {
     border: none;
     margin: 10px 0;
     padding: 10px;
@@ -59,12 +58,6 @@ input , .btn{
     background-color: #E4E4E4;
     width: 85%;
     margin-left: 25px;
-}
-.btn{
-    background-color: #D22E2E;
-    color: #fff;
-    font-size: 20px;
-    margin-bottom: 25px;
 }
 .member p{
     color: #5B595C;
