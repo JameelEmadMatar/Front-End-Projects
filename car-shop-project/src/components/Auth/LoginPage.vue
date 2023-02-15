@@ -1,5 +1,5 @@
 <template>
-        <form method="post" @submit.prevent="login">
+    <form method="post" @submit.prevent="login">
         <div class="main">
             <h1>Login</h1>
             <div class="form-details">
@@ -18,20 +18,51 @@
     </form>
 </template>
 <script setup>
+/*
 import router from '@/router/router'
-import {  ref} from 'vue'
+import {  ref } from 'vue'
+import axiosClient from '@/axiosClient'
 import { useUserStore } from '../Store/user'
 const user = useUserStore()
-// onMounted(() => user.updateUser({"name" : "jameel"}))
+const form = ref({
+    email : null ,
+    password : null,
+    device_name : 'Web' ,
+})
+const login = async() => { 
+   await axiosClient.post(`/login`,{
+        email : form.value.email,
+        password : form.value.password,
+        device_name : form.value.device_name,
+    })
+    .then(res => {
+        user.updateUser(res.data.user.name,res.data.token)
+        router.push('/')
+    })
+}
+*/ 
+//test
+import router from '@/router/router'
+import {  ref } from 'vue'
+import axiosClient from '@/axiosClient'
+import { useUserStore } from '../Store/user'
+const user = useUserStore()
 const form = ref({
     email : null ,
     password : null,
 })
-function login(){
-    if(form.value.email == 'jameelmatar1@gmail.com' && form.value.password == '123'){
-    user.updateUser({"email" : form.value.email , "password" : form.value.password})
-    router.push('/')
-}}
+const login = async() => { 
+   await axiosClient.post(`/user/login`,{
+        email : form.value.email,
+        password : form.value.password,
+        device_type : 'android',
+        device_token : 'sampletoken2132',
+    })
+    .then(res => {
+        user.updateUser(res.data.data.email,res.data.api_token)
+        router.push('/')
+    })
+}
 </script>
 <style scoped>
 form{

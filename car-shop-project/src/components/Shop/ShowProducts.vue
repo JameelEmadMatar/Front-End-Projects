@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
     <div class="products">
         <div class="container">
@@ -5,176 +6,46 @@
                 <div class="show">
                     <div class="interface">
                         <div class="one">
-                            <p>Sort By : </p>
-                            <select>
-                                <option>Product Name</option>
-                                <option>Newest Items</option>
-                                <option>oldest Items</option>
-                                <option>Higest Price</option>
-                                <option>Lowest Price</option>
-                            </select>
+                            <input type="text" placeholder="Filter By Name">
                         </div>
                         <div class="two">
-                            <p>Show : </p>
-                            <select>
-                                <option>10 Items / Page</option>
-                                <option>25 Items / Page</option>
-                                <option>50 Items / Page</option>
-                                <option>100 Items / Page</option>
-                            </select>
+                            <input type="text" placeholder="Filter By Category">
                         </div>
                     </div>
                     <div class="row">
-                        <div class=" col-sm-6 col-md-3 main">
+                        <div class=" col-sm-6 col-md-3 main" v-for="product of products" :key="product.id">
                             <div>
-                                <img src="@/assets/Items/1.jpg" >
+                                <img :src ="'http://127.0.0.1:8000/storage/' + product.image.path">
                             </div>
                             <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/2.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/3.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/4.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                            <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/5.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/6.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/1.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/2.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/3.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/4.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/5.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
-                            </div>
-                        </div>
-                        <div class=" col-sm-6 col-md-3 main">
-                            <div>
-                                <img src="@/assets/Items/6.jpg" >
-                            </div>
-                            <div class="content-text">
-                                <p>Bmw</p>
-                                <h4>Front LIGHTING</h4>
-                                <span>$28.00</span>
+                                <p>{{JSON.parse(product.category.name).en}}</p>
+                                <h4>{{JSON.parse(product.name).en}}</h4>
+                                <span>${{product.price}}</span>
                             </div>
                         </div>
                     </div>
                     <PageNumber/>
+                    <div class="pag">
+                        <paginate
+                            :page-count="20"
+                            :page-range="3"
+                            :margin-pages="2"
+                            :click-handler="clickCallback"
+                            :prev-text="'Prev'"
+                            :next-text="'Next'"
+                            :container-class="'pagination'"
+                            :page-class="'page-item'"
+                        >
+                        </paginate>
+                    </div>
                 </div>
                 <div class="filters">
                     <div class="categories">
                         <h4>CATEGORIES</h4>
                         <ul>
-                            <li>
+                            <li v-for="cate of categories" :key="cate.id">
                                 <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>opel (5)</a>
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>Subaru (77)</a>
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>Bmw (6)</a>
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>Toyota (11)</a>
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>Audi (54)</a>
-                            </li>
-                            <li>
-                                <font-awesome-icon icon="fa-solid fa-angles-right" />
-                                <a>Chevrolet (22)</a>
+                                <a>{{JSON.parse(cate.name).en}}</a>
                             </li>
                         </ul>
                     </div>
@@ -189,40 +60,30 @@
                         <h5>Price : <span>$50 - $400</span></h5>
                         <button>Filter</button>
                     </div>
-                    <div class="brand">
-                        <h4>BRANDS</h4>
-                        <div>
-                            <input type="checkbox">
-                            <a>opel (5)</a>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <a>Subaru (77)</a>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <a>Bmw (6)</a>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <a>Toyota (11)</a>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <a>Audi (54)</a>
-                        </div>
-                        <div>
-                            <input type="checkbox">
-                            <a>Chevrolet (22)</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script setup>
+// import axiosClient from '@/axiosClient'
+import Paginate from 'vuejs-paginate-next';
+import { useCategoriesStore } from '@/components/Store/categories'
+import { useProductsStore } from '@/components/Store/products'
+import { onMounted, ref } from 'vue'
 import PageNumber from './PageNumber.vue'
+const categories = useCategoriesStore().getCategories
+const products = ref(null)
+onMounted(() => {
+    products.value = useProductsStore().getProducts
+})
+/*
+const load = async() =>{
+    await axiosClient.get("/products?page=2")
+    .then( res => useProductsStore().updateProducts(res.data.Products.data))
+    products.value = useProductsStore().getProducts
+  }
+*/
 </script>
 <style scoped>
 .products{
@@ -246,10 +107,6 @@ import PageNumber from './PageNumber.vue'
     border: 1px solid #e5e5e5;
     padding: 15px;
 }
-.one , .two{
-    display: flex;
-    align-items: center;
-}
 .show p{
     margin: 0;
     font-weight: bold;
@@ -272,6 +129,7 @@ import PageNumber from './PageNumber.vue'
 }
 .main img{
     width: 100%;
+    height: 200px;
 }
 .content-text{
     margin-top: 20px;
@@ -350,20 +208,10 @@ li a:hover{
     font-weight: bold;
     margin-top: 20px;
 }
-.brand h4{
-    font-size: 20px;
-    font-weight: bold;
-    margin: 30px 0;
-}
-.brand div{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-.brand div a {
-    margin-left: 10px;
-    color: #666666 !important;
+.one input , .two input{
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
 }
 @media screen and (max-width:575px) {
     .main{
@@ -384,7 +232,7 @@ li a:hover{
         justify-content: space-between;
         padding: 20px;
     }
-    .filter-price h4 , .brand h4{
+    .filter-price h4{
         margin-top: -5px;
         margin-bottom: 30px;
     }
@@ -392,9 +240,6 @@ li a:hover{
 @media screen and (max-width:767px) {
     .interface{
         display: block;
-    }
-    .one  {
-        margin-bottom: 30px
     }
 }
 </style>

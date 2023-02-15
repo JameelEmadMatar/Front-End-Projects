@@ -7,10 +7,7 @@
                     <input type="email" placeholder="Email" name="email" v-model="form.email" >
                 </div>
                 <div class="error">
-                    <input type="password" placeholder="Password" name="password" v-model="form.password">
-                </div>
-                <div class="error">
-                    <input type="password" placeholder="password_confirmation" name="password_confirmation" v-model="form.password_confirmation">
+                    <input type="text" placeholder="Code" name="Code" v-model="form.code">
                 </div>
                 <div class="check">
                     <input type="checkbox">
@@ -25,54 +22,24 @@
     </form>
 </template>
 <script setup>
-/*
-import router from '@/router/router'
 import {  ref } from 'vue'
 import axiosClient from '@/axiosClient'
 import { useUserStore } from '../Store/user'
 const user = useUserStore()
 const form = ref({
-    name : null,
     email : null ,
-    password : null,
-    password_confirmation : null,
-    device_name : 'Web',
+    code : null,
 })
 const signup = async() => { 
-   await axiosClient.post(`/register`,{
-        name : form.value.name,
+   await axiosClient.post(`/user/verify-email`,{
         email : form.value.email,
-        password : form.value.password,
-        password_confirmation : form.value.password_confirmation,
-        device_name : form.value.device_name,
+        code : form.value.code,
+        device_type : 'android',
+        device_token : 'sampletoken2132',
     })
     .then(res => {
-        user.updateUser(res.data.user.name,res.data.token)
-        router.push('/')
-    })
-}
-*/
-// test 
-import {  ref } from 'vue'
-import router from '@/router/router'
-import axiosClient from '@/axiosClient'
-import { useUserStore } from '../Store/user'
-const user = useUserStore()
-const form = ref({
-    email : null ,
-    password : null,
-    password_confirmation : null,
-})
-const signup = async() => { 
-   await axiosClient.post(`/user/register`,{
-        email : form.value.email,
-        password : form.value.password,
-        password_confirmation : form.value.password_confirmation
-    })
-    .then(res => {
-        router.push('/VerifyEmail')
-        user.updateTempCode(res.data.temp_code)
-       
+        user.updateUser(res.data.data.email,res.data.api_token)
+        alert('verfied')
     })
 }
 </script>

@@ -12,25 +12,28 @@
                         <li>
                             <router-link  to="/">Home</router-link>
                         </li>
-                        <li >
+                        <li>
                             <router-link  to="/about">About</router-link>
                         </li>
-                        <li >
+                        <li>
                             <router-link  to="/shop">Shop</router-link>
                         </li>
-                        <li >
+                        <li>
                             <router-link  to="/blog">Blog</router-link>
                         </li>
-                        <li >
+                        <li>
                             <router-link  to="/Contact">Contact</router-link>
                         </li>
-                        <li  v-if="user == null">
+                        <li>
+                            <router-link  to="/dropdown">dropdown</router-link>
+                        </li>
+                        <li v-if="!user.getUser">
                             <router-link  to="/signup">SignUp</router-link>
                         </li>
-                        <li  v-if="user == null">
+                        <li v-if="!user.getUser">
                             <router-link  to="/login">Login</router-link>
                         </li>
-                        <li class="logout" v-if="user != null">
+                        <li class="logout" v-if="user.getUser">
                             <button  @click="logout">LogOut</button>
                         </li>
                     </ul>
@@ -46,12 +49,14 @@
 import router from '@/router/router'
 import { ref } from 'vue'
 import { useUserStore } from '../components/Store/user'
-const user = useUserStore().getUser
+const user = useUserStore()
 const showMobileMenu = ref(false)
+/*
 function logout(){
-    useUserStore().updateUser(null)
+    useUserStore().updateUser(null , null)
     router.push('/login')
 }
+*/
 function toggleShowMenu(){
     if(showMobileMenu.value == false){
         showMobileMenu.value = true
@@ -59,10 +64,13 @@ function toggleShowMenu(){
         document.getElementsByClassName('nav-menu')[0].style.alignItems = 'normal'
     }else{
         showMobileMenu.value = false
-        console.log(document.getElementsByClassName('nav-menu')[0].style.display.value)
         document.getElementsByClassName('list')[0].style.display = 'none'
         document.getElementsByClassName('nav-menu')[0].style.alignItems = 'center'
     }
+}
+function logout(){
+    user.updateUser(null , null)
+    router.push('/login')
 }
 </script>
 <style scoped>
@@ -126,6 +134,14 @@ li:hover::before{
 .menu-bar{
     display: none;
     cursor: pointer;
+}
+.logout button{
+    border: none;
+    background-color: transparent;
+    color: #0000008C;
+}
+.logout button:hover{
+    color: var(--main-color);
 }
 @media screen and (max-width:991px) {
     .nav-menu{

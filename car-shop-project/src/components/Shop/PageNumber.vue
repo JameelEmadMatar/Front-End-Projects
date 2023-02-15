@@ -1,11 +1,20 @@
 <template>
     <div class="numbers">
         <p>1</p>
-        <p>2</p>
+        <p @click="load">2</p>
         <p>3</p>
         <p>></p>
     </div>
 </template>
+<script setup>
+import axiosClient from '@/axiosClient'
+import { useProductsStore } from '@/components/Store/products'
+const products = useProductsStore()
+const load = async() =>{
+    await axiosClient.get("/products?page=2")
+    .then( res => products.updateProducts(res.data.Products.data))
+}
+</script>
 <style scoped>
 .numbers{
     display: flex;

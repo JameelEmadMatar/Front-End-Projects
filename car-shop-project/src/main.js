@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+
 import "./Css/Style.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
+import '@coreui/coreui/dist/css/coreui.min.css'
+import Paginate from "vuejs-paginate-next";
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,4 +18,4 @@ const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 library.add(faBars ,faGear , faFacebook , faInstagram , faLinkedin , faYoutube , faClock , faAnglesRight , faPhone , faFax , faEnvelope , faLocationDot)
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).use(pinia).mount('#app')
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(router).use(pinia).use(Paginate).mount('#app')

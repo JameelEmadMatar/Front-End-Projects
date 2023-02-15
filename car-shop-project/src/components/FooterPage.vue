@@ -3,7 +3,7 @@
         <div class="container">
             <div class="footer-main">
                 <div class="info">
-                    <div>Car Shop © All Rights Reserved. With Made With Love By <span>Abood Bahour</span></div>
+                    <div>Car Shop © All Rights Reserved. With Made With Love By <span>Jameel Matar & Abood Bahour</span></div>
                 </div>
                 <div class="social">
                     <ul class="d-flex m-0 list-unstyled gap-3">

@@ -1,3 +1,4 @@
+import { useUserStore } from '@/components/Store/user';
 import { createRouter , createWebHistory } from 'vue-router';
 const routes = [
     {
@@ -10,6 +11,30 @@ const routes = [
                 component:import('@/components/Views/HomePage.vue'),
                 meta : {
                     title : 'Home'
+                }
+            },
+            {
+                path:'/dropdown',
+                name:'dropdown',
+                component:import('@/components/Test/DropDown.vue'),
+                meta : {
+                    title : 'dropdown'
+                }
+            },
+            {
+                path:'/ProductsDetails/:id?',
+                name:'ProductsDetails',
+                component:import('@/components/Test/ProductsDetails.vue'),
+                meta : {
+                    title : 'ProductsDetails'
+                }
+            },
+            {
+                path:'/VerifyEmail',
+                name:'VerifyEmail',
+                component:import('@/components/Auth/VerifyEmail.vue'),
+                meta : {
+                    title : 'VerifyEmail'
                 }
             },
             {
@@ -49,7 +74,8 @@ const routes = [
                 name : 'login',
                 component : import('@/components/Auth/LoginPage.vue'),
                 meta : {
-                    title : 'Login'
+                    title : 'Login',
+                    auth : true,
                 }
             },
             {
@@ -57,7 +83,8 @@ const routes = [
                 name : 'signup',
                 component : import('@/components/Auth/SignUp.vue'),
                 meta : {
-                    title : 'Sign Up'
+                    title : 'Sign Up',
+                    auth : true,
                 }
             },
             {
@@ -77,6 +104,13 @@ const router = createRouter({
 });
 const defaultTitle = 'Car Shop'
 router.afterEach((to) => {
-    document.title = to.meta.title || defaultTitle;
+    document.title = to.meta.title || defaultTitle
+})
+router.beforeEach((to,from,next) => {
+    const user = useUserStore().getUser
+    if(user && to.meta.auth){
+        router.push('/')
+    }
+    next()
 })
 export default router;
