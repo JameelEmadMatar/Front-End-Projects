@@ -6,10 +6,10 @@
                 <div class="show">
                     <div class="interface">
                         <div class="one">
-                            <input type="text" placeholder="Filter By Name">
+                            <input type="text" placeholder="Filter By Name" v-model="filterName" @input="FilterByName" @blur="resetProduct">
                         </div>
                         <div class="two">
-                            <input type="text" placeholder="Filter By Category">
+                            <input type="text" placeholder="Filter By Category" v-model="CategoryValue" @input="filterCategory" @blur="restbyCate">
                         </div>
                     </div>
                     <div class="row">
@@ -19,15 +19,17 @@
                             </div>
                             <div class="content-text">
                                 <p>{{JSON.parse(product.category.name).en}}</p>
-                                <h4>{{JSON.parse(product.name).en}}</h4>
+                                <h4>{{JSON.parse(product.name).en.length > 10 ? JSON.parse(product.name).en.slice(0,10)+`..` : JSON.parse(product.name).en}}</h4>
                                 <span>${{product.price}}</span>
+                            </div>
+                            <div v-if="user.getUserName">
+                                <button class="btn btn-primary mt-3" @click="AddOrder(product.id , product.price)">Add Order</button>
                             </div>
                         </div>
                     </div>
-                    <PageNumber/>
                     <div class="pag">
                         <paginate
-                            :page-count="20"
+                            :page-count="pageCount"
                             :page-range="3"
                             :margin-pages="2"
                             :click-handler="clickCallback"
@@ -35,6 +37,7 @@
                             :next-text="'Next'"
                             :container-class="'pagination'"
                             :page-class="'page-item'"
+                            @click="showPage"
                         >
                         </paginate>
                     </div>
@@ -51,14 +54,16 @@
                     </div>
                     <div class="filter-price">
                         <h4>FILTER BY PRICE</h4>
-                        <div class="range">
-                            <p>Min : <input type="number"></p>
-                        </div>
-                        <div class="range">
-                            <p>max : <input type="number"></p>
-                        </div>
-                        <h5>Price : <span>$50 - $400</span></h5>
-                        <button>Filter</button>
+                        <form method="post" @submit.prevent="priceFilter">
+                            <div class="range">
+                                <p>Min : <input type="number" v-model="price.min" required></p>
+                            </div>
+                            <div class="range">
+                                <p>max : <input type="number" v-model="price.max" required></p>
+                            </div>
+                            <h5>Price : <span>{{price.min ? `$${price.min} - $${price.max}` : ''}}</span></h5>
+                            <button>Filter</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,24 +71,73 @@
     </div>
 </template>
 <script setup>
-// import axiosClient from '@/axiosClient'
+import axiosClient from '@/axiosClient'
 import Paginate from 'vuejs-paginate-next';
+import { useUserStore } from '@/components/Store/user'
 import { useCategoriesStore } from '@/components/Store/categories'
 import { useProductsStore } from '@/components/Store/products'
 import { onMounted, ref } from 'vue'
-import PageNumber from './PageNumber.vue'
+const user = useUserStore()
 const categories = useCategoriesStore().getCategories
 const products = ref(null)
+const currentPage = ref(1)
+const pageCount = ref(1)
+const filterName = ref('') 
+const CategoryValue = ref('')
+const price = ref({
+    min : '',
+    max : ''
+})
 onMounted(() => {
     products.value = useProductsStore().getProducts
+    pageCount.value = useProductsStore().getpageCount
 })
-/*
-const load = async() =>{
-    await axiosClient.get("/products?page=2")
+const showPage = async() => {
+    currentPage.value = document.querySelector('.page-item.active').textContent
+    await axiosClient.get(`/products?page=${currentPage.value}`)
     .then( res => useProductsStore().updateProducts(res.data.Products.data))
     products.value = useProductsStore().getProducts
-  }
-*/
+}
+async function AddOrder(id ,price){
+    await axiosClient.post(`/orders`,{
+        user_id : user.getUserId ,
+        product_id : id,
+        price ,
+        address : 'ramall',
+    }, {
+        headers: {
+          Authorization : `Bearer ${user.getUserToekn}`
+        }
+    })
+}
+function FilterByName(){
+    useProductsStore().filterName(filterName.value)
+    products.value = useProductsStore().getFilterProducts
+}
+function resetProduct(){
+    filterName.value = ''
+    products.value = useProductsStore().getProducts
+}
+function restbyCate(){
+    CategoryValue.value = ''
+    products.value = useProductsStore().getProducts
+}
+function filterCategory(){
+    useProductsStore().filterCategory(CategoryValue.value)
+    products.value = useProductsStore().getFilterProducts
+}
+function priceFilter(){
+    if(price.value.min < price.value.max){
+        useProductsStore().filterByPrice(price.value.min , price.value.max)
+        products.value = useProductsStore().getFilterProducts
+        price.value = {
+            min : '',
+            max : ''
+        }
+    }else{
+        alert('Max Number Not Larger Thane Min Number')
+    }
+}
 </script>
 <style scoped>
 .products{
@@ -212,6 +266,9 @@ li a:hover{
     padding: 5px 10px;
     border-radius: 10px;
     border: 1px solid #eee;
+}
+.pag{
+    margin: 40px 0;
 }
 @media screen and (max-width:575px) {
     .main{

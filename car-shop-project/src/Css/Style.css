@@ -47,3 +47,19 @@
     }
 }
 /* End Container */
+.page-link{
+    cursor: pointer;
+    background-color: #f6f6f6 !important;
+    color: #666666 !important;
+    border: none;
+    height:100%;
+}
+.active>.page-link, .page-link.active{
+    color: #fff !important;
+    background-color: var(--main-color) !important;
+    border: none;
+}
+.page-link:hover{
+    color: #fff !important;
+    background-color: var(--main-color) !important;
+}

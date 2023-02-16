@@ -18,7 +18,6 @@
     </form>
 </template>
 <script setup>
-/*
 import router from '@/router/router'
 import {  ref } from 'vue'
 import axiosClient from '@/axiosClient'
@@ -36,30 +35,7 @@ const login = async() => {
         device_name : form.value.device_name,
     })
     .then(res => {
-        user.updateUser(res.data.user.name,res.data.token)
-        router.push('/')
-    })
-}
-*/ 
-//test
-import router from '@/router/router'
-import {  ref } from 'vue'
-import axiosClient from '@/axiosClient'
-import { useUserStore } from '../Store/user'
-const user = useUserStore()
-const form = ref({
-    email : null ,
-    password : null,
-})
-const login = async() => { 
-   await axiosClient.post(`/user/login`,{
-        email : form.value.email,
-        password : form.value.password,
-        device_type : 'android',
-        device_token : 'sampletoken2132',
-    })
-    .then(res => {
-        user.updateUser(res.data.data.email,res.data.api_token)
+        user.updateUser(res.data.user.name , res.data.token , res.data.user.id)
         router.push('/')
     })
 }

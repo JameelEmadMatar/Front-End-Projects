@@ -14,30 +14,6 @@ const routes = [
                 }
             },
             {
-                path:'/dropdown',
-                name:'dropdown',
-                component:import('@/components/Test/DropDown.vue'),
-                meta : {
-                    title : 'dropdown'
-                }
-            },
-            {
-                path:'/ProductsDetails/:id?',
-                name:'ProductsDetails',
-                component:import('@/components/Test/ProductsDetails.vue'),
-                meta : {
-                    title : 'ProductsDetails'
-                }
-            },
-            {
-                path:'/VerifyEmail',
-                name:'VerifyEmail',
-                component:import('@/components/Auth/VerifyEmail.vue'),
-                meta : {
-                    title : 'VerifyEmail'
-                }
-            },
-            {
                 path:'/about',
                 name:'about',
                 component:import('@/components/about/AboutPage.vue'),

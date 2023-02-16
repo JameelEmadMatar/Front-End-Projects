@@ -3,22 +3,20 @@ import { defineStore } from 'pinia'
 export const useUserStore = defineStore({
     id : 'user',
     state : () => ({
-        user : null,
+        userName : null,
+        userId : null,
         token : null,
-        temp_code : null,
     }),
     getters : {
-        getUser : (state) => state.user,
+        getUserName : (state) => state.userName,
+        getUserId : (state) => state.userId,
         getUserToekn : (state) => state.token,
-        getTemp_code : (state) => state.temp_code,
     },
     actions : {
-        updateUser(user , token) {
-            this.user = user
+        updateUser(userName , token ,userId) {
+            this.userName = userName
             this.token = token
-        },
-        updateTempCode(code){
-            this.temp_code = code
+            this.userId = userId
         }
     },
     persist: true,

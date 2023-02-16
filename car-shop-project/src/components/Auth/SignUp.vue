@@ -4,6 +4,9 @@
             <h1>Register Form</h1>
             <div class="form-details">
                 <div class="error">
+                    <input type="text" placeholder="User Name" name="User Name" v-model="form.name" >
+                </div>
+                <div class="error">
                     <input type="email" placeholder="Email" name="email" v-model="form.email" >
                 </div>
                 <div class="error">
@@ -25,7 +28,6 @@
     </form>
 </template>
 <script setup>
-/*
 import router from '@/router/router'
 import {  ref } from 'vue'
 import axiosClient from '@/axiosClient'
@@ -47,32 +49,8 @@ const signup = async() => {
         device_name : form.value.device_name,
     })
     .then(res => {
-        user.updateUser(res.data.user.name,res.data.token)
+        user.updateUser(res.data.user.name , res.data.token , res.data.user.id)
         router.push('/')
-    })
-}
-*/
-// test 
-import {  ref } from 'vue'
-import router from '@/router/router'
-import axiosClient from '@/axiosClient'
-import { useUserStore } from '../Store/user'
-const user = useUserStore()
-const form = ref({
-    email : null ,
-    password : null,
-    password_confirmation : null,
-})
-const signup = async() => { 
-   await axiosClient.post(`/user/register`,{
-        email : form.value.email,
-        password : form.value.password,
-        password_confirmation : form.value.password_confirmation
-    })
-    .then(res => {
-        router.push('/VerifyEmail')
-        user.updateTempCode(res.data.temp_code)
-       
     })
 }
 </script>

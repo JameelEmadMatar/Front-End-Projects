@@ -24,16 +24,13 @@
                         <li>
                             <router-link  to="/Contact">Contact</router-link>
                         </li>
-                        <li>
-                            <router-link  to="/dropdown">dropdown</router-link>
-                        </li>
-                        <li v-if="!user.getUser">
+                        <li v-if="!user.getUserName">
                             <router-link  to="/signup">SignUp</router-link>
                         </li>
-                        <li v-if="!user.getUser">
+                        <li v-if="!user.getUserName">
                             <router-link  to="/login">Login</router-link>
                         </li>
-                        <li class="logout" v-if="user.getUser">
+                        <li class="logout" v-if="user.getUserName">
                             <button  @click="logout">LogOut</button>
                         </li>
                     </ul>
@@ -51,12 +48,10 @@ import { ref } from 'vue'
 import { useUserStore } from '../components/Store/user'
 const user = useUserStore()
 const showMobileMenu = ref(false)
-/*
 function logout(){
-    useUserStore().updateUser(null , null)
+    user.updateUser(null , null , null)
     router.push('/login')
 }
-*/
 function toggleShowMenu(){
     if(showMobileMenu.value == false){
         showMobileMenu.value = true
@@ -67,10 +62,6 @@ function toggleShowMenu(){
         document.getElementsByClassName('list')[0].style.display = 'none'
         document.getElementsByClassName('nav-menu')[0].style.alignItems = 'center'
     }
-}
-function logout(){
-    user.updateUser(null , null)
-    router.push('/login')
 }
 </script>
 <style scoped>
