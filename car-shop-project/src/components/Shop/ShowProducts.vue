@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-parsing-error -->
 <template>
     <div class="products">
         <div class="container">
@@ -32,7 +31,6 @@
                             :page-count="pageCount"
                             :page-range="3"
                             :margin-pages="2"
-                            :click-handler="clickCallback"
                             :prev-text="'Prev'"
                             :next-text="'Next'"
                             :container-class="'pagination'"
@@ -76,27 +74,23 @@ import Paginate from 'vuejs-paginate-next';
 import { useUserStore } from '@/components/Store/user'
 import { useCategoriesStore } from '@/components/Store/categories'
 import { useProductsStore } from '@/components/Store/products'
-import { onMounted, ref } from 'vue'
+import { ref , computed, onMounted } from 'vue'
 const user = useUserStore()
-const categories = useCategoriesStore().getCategories
-const products = ref(null)
+const categories = computed(() => useCategoriesStore().getCategories)
+const products = computed(() => useProductsStore().getShowProducts)
 const currentPage = ref(1)
-const pageCount = ref(1)
+const pageCount = computed(() => useProductsStore().getpageCount)
 const filterName = ref('') 
 const CategoryValue = ref('')
 const price = ref({
     min : '',
     max : ''
 })
-onMounted(() => {
-    products.value = useProductsStore().getProducts
-    pageCount.value = useProductsStore().getpageCount
-})
+onMounted(() => showPage())
 const showPage = async() => {
     currentPage.value = document.querySelector('.page-item.active').textContent
     await axiosClient.get(`/products?page=${currentPage.value}`)
     .then( res => useProductsStore().updateProducts(res.data.Products.data))
-    products.value = useProductsStore().getProducts
 }
 async function AddOrder(id ,price){
     await axiosClient.post(`/orders`,{
@@ -112,24 +106,21 @@ async function AddOrder(id ,price){
 }
 function FilterByName(){
     useProductsStore().filterName(filterName.value)
-    products.value = useProductsStore().getFilterProducts
 }
 function resetProduct(){
     filterName.value = ''
-    products.value = useProductsStore().getProducts
+    useProductsStore().updateProducts(useProductsStore().getProducts)
 }
 function restbyCate(){
     CategoryValue.value = ''
-    products.value = useProductsStore().getProducts
+    useProductsStore().updateProducts(useProductsStore().getProducts)
 }
 function filterCategory(){
     useProductsStore().filterCategory(CategoryValue.value)
-    products.value = useProductsStore().getFilterProducts
 }
 function priceFilter(){
     if(price.value.min < price.value.max){
         useProductsStore().filterByPrice(price.value.min , price.value.max)
-        products.value = useProductsStore().getFilterProducts
         price.value = {
             min : '',
             max : ''

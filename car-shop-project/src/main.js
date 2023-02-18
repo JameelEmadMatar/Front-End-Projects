@@ -1,11 +1,10 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
-import "./Css/Style.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import "./Css/Style.css"
 import '@coreui/coreui/dist/css/coreui.min.css'
-import Paginate from "vuejs-paginate-next";
+import Paginate from "vuejs-paginate-next"
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'

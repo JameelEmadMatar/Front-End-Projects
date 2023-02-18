@@ -83,7 +83,7 @@ router.afterEach((to) => {
     document.title = to.meta.title || defaultTitle
 })
 router.beforeEach((to,from,next) => {
-    const user = useUserStore().getUser
+    const user = useUserStore().getUserName
     if(user && to.meta.auth){
         router.push('/')
     }
